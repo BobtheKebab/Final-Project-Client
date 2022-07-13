@@ -6,6 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { deleteCampus } from "../../store/actions/actionCreators.js"
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -34,6 +35,7 @@ const AllCampusesView = (props) => {
           <img src={campus.imageUrl} alt="No Image Available" width="200" height="200" />
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          <button onClick={() => props.deleteCampus(campus.id)}> Delete </button>
           <hr/>
         </div>
       ))}
