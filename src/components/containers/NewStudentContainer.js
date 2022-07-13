@@ -1,6 +1,5 @@
 /*==================================================
 NewStudentContainer.js
-
 The Container component is responsible for stateful logic and data fetching, and
 passes data (if any) as props to the corresponding View component.
 If needed, it also defines the component's "connect" function.
@@ -19,7 +18,10 @@ class NewStudentContainer extends Component {
     super(props);
     this.state = {
       firstname: "", 
-      lastname: "", 
+      lastname: "",
+      email: "",
+      imageUrl: "",
+      gpa: null,
       campusId: null, 
       redirect: false, 
       redirectId: null
@@ -40,16 +42,23 @@ class NewStudentContainer extends Component {
     let student = {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
+        email: this.state.email,
+        imageUrl: this.state.imageUrl,
+        gpa: this.state.gpa,
         campusId: this.state.campusId
     };
     
     // Add new student in back-end database
     let newStudent = await this.props.addStudent(student);
+    console.log(student);
 
     // Update state, and trigger redirect to show the new student
     this.setState({
       firstname: "", 
       lastname: "", 
+      email: "",
+      imageUrl: "",
+      gpa: null,
       campusId: null, 
       redirect: true, 
       redirectId: newStudent.id
